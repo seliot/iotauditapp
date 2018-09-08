@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # audit_client_nginx:
+  #   restart: always
+  #   build: ./nginx/
+  #   ports:
+  #     - "8000:80"
+  #   depends_on:
+  #     - audit_client
+  #   links:
+  #     - audit_client:web
+  #   volumes:
+  #     - ./../source:/usr/share/nginx/html
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #   container_name: audit_client_nginx
+
+  audit_client:
+    restart: always
+    build: ./node/
+    ports:
+      - "80:8080"
+    volumes:
+      - ./../source:/opt
+    working_dir: /opt
+    command: npm run start
+    container_name: audit_client
